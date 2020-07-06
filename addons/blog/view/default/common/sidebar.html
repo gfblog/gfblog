@@ -1,0 +1,58 @@
+<div class="right-card">
+
+    <div class="right-card-main">
+        <div class="right-card-title">请喝咖啡</div>
+        <div class="cl-code">
+            <img src="{$config.donate|cdnurl}" class="img-fluid" alt="">
+            <p>感谢博主，喝杯咖啡~</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="right-card">
+
+    <div class="right-card-main">
+        <div class="right-card-title">最新文章</div>
+        <ul class="right-recommended-list">
+            {blog:arclist row="10" id="item" orderby="createtime"}
+            <li><a href="{$item.url}"><i class="fa fa-angle-right" aria-hidden="true"></i>{$item.title|htmlentities}</a></li>
+            {/blog:arclist}
+        </ul>
+    </div>
+</div>
+
+<div class="right-card">
+    <div class="right-card-main">
+        <div class="right-card-title">搜索文章</div>
+        <div class="p-3 pb-4">
+            <form action="{:addon_url('blog/search/index')}" method="get" role="form">
+                <input type="text" class="form-control" name="q" placeholder="请输入关键词进行搜索">
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="right-card">
+    <div class="right-card-main">
+        {blog:block name="sidebarad1" /}
+    </div>
+</div>
+
+<div class="right-card">
+
+    <div class="right-card-main">
+        <div class="right-card-title">推荐文章</div>
+        <ul class="right-recommended-list">
+            {blog:arclist flag="recommend" row="10" id="item"}
+            <li><a href="{$item.url}"><i class="fa fa-angle-right" aria-hidden="true"></i>{$item.title|htmlentities}</a></li>
+            {/blog:arclist}
+        </ul>
+    </div>
+</div>
+
+<div class="right-card">
+    <div class="right-card-main">
+        {blog:block name="sidebarad2" /}
+    </div>
+</div>

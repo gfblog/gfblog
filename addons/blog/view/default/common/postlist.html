@@ -1,0 +1,35 @@
+{volist name='postlist' id='post'}
+<div class="cl-card">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-12 cl-card-image img-zoom">
+            <div class="object-responsive object-responsive-4by3">
+            <a href="{$post.url}"><img src="{$post.thumb}" class="img-fluid" alt=""></a>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-8 col-sm-12 cl-card-main">
+            <h3 class="cl-card-main-title"><a href="{$post.url}">{$post.title|htmlentities}</a></h3>
+            <div class="cl-card-main-info">{$post.summary|strip_tags|htmlentities}</div>
+            <div class="cl-card-more"><a href="{$post.url}">阅读更多...</a></div>
+        </div>
+    </div>
+</div>
+{/volist}
+
+{if $config.pagemode=='normal'}
+    <!-- S 分页栏 -->
+    <div class="text-center pager">
+        {:$postlist->render()}
+    </div>
+    <!-- E 分页栏 -->
+    {if $postlist->isEmpty()}
+        <div class="loadmore loadmore-line loadmore-nodata"><span class="loadmore-tips">暂无数据</span></div>
+    {/if}
+{else/}
+    {if $postlist->isEmpty()}
+        <div class="loadmore loadmore-line loadmore-nodata"><span class="loadmore-tips">暂无更多数据</span></div>
+    {else /}
+        <div class="text-center">
+            <a href="?page={:$postlist->getNextPage()}" data-page="{:$postlist->getNextPage()}" class="btn btn-default my-4 px-4 btn-loadmore">加载更多</a>
+        </div>
+    {/if}
+{/if}

@@ -1,0 +1,35 @@
+{volist name='commentlist' id='comment'}
+<div class="comment-panel" id="comment-{$comment.id}">
+    <div class="comment-panel-portrait">
+        <img src="{$comment.avatar}" class="img-fluid rounded-circle" alt="">
+    </div>
+    <div class="comment-panel-content">
+        <div class="comment-panel-content-item">
+            <div class="comment-author">{$comment.username|htmlentities}</div>
+            <div>{$comment.createtime|human_date}</div>
+        </div>
+        <div class="comment-panel-content-main">{$comment.content|htmlentities}</div>
+        {volist name="$comment['sublist']" id='subcomment' }
+        <div class="comment-secondary-panel" id="comment-{$subcomment.id}">
+            <span class="triangle-icon"><i class="fa fa-sort-asc" aria-hidden="true"></i></span>
+            <div class="comment-panel-content">
+                <div class="comment-panel-content-item">
+                    <div class="comment-author">{$subcomment.username|htmlentities}</div>
+                    <div>{$subcomment.createtime|human_date}</div>
+                </div>
+                <div class="comment-panel-content-main">{$subcomment.content|htmlentities}</div>
+            </div>
+        </div>
+        {/volist}
+    </div>
+    <div class="comment-reply"><a href="javascript:;" rel="{$comment.id}" title="@{$comment.username} " class="reply">回复</a></div>
+</div>
+{/volist}
+{if $commentlist->isEmpty()}
+<p class="text-muted">
+    还没有人发表评论
+</p>
+{/if}
+<div class="pager mt-3">
+    {$commentlist->render()}
+</div>

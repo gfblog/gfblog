@@ -1,0 +1,89 @@
+{layout name="common/layout" /}
+
+<div class="cl-artical-content">
+    <h2 class="cl-artical-title">{$post.title|htmlentities}</h2>
+    <div class="cl-card-tag">
+        <div><a href="{$category.url}" class="text-muted">{$category.name|htmlentities}</a> / <span>{$post.views}</span>人浏览 / <span>{$post.comments}</span>人评论</div>
+    </div>
+    <div id="content" class="cl-artical">
+        {$post.content}
+    </div>
+
+    <!-- 分享 -->
+    <div class="floatbar">
+        <a href="{:addon_url('blog/index/index','',false)}"><i class="fa fa-home"></i></a>
+        <a href="#comments"><i class="fa fa-comment"></i></a>
+        <a href="javascript:" class="gotop"><i class="fa fa-arrow-up"></i></a>
+    </div>
+    <!-- 扫二维码 -->
+    <div class="donate-img text-center">
+        <img src="{$config.donate|cdnurl}" alt="">
+        <p>感谢博主，喝杯咖啡~</p>
+    </div>
+</div>
+
+<div class="recommend-panel">
+    <h4 class="right-card-title px-0">相关文章</h4>
+    <div class="card-deck">
+        {blog:arclist row="3" id="item"}
+        <div class="card ll-panel">
+            <a class="recommend-panel-link" href="{$item.url}">
+                <div class="object-responsive object-responsive-4by3 img-zoom">
+                    <img src="{$item.thumb|cdnurl}" class="img-fluid" alt="">
+                </div>
+                <div class="recommend-panel-bottom">
+                    {$item.title}
+                    <div class="text-muted small">{$item.createtime|human_date}</div>
+                </div>
+            </a>
+        </div>
+        {/blog:arclist}
+    </div>
+</div>
+
+<div class="comment">
+    <div id="comments" class="pt-3">
+        <h3><span id="commentcount">{$post.comments}</span> 条评论</h3>
+        <div class="commentlist">
+            {include file="common/commentlist"}
+        </div>
+    </div>
+    <div id="respond" class="pt-3">
+        <h3>发表评论 <a href="javascript:;" style="display:none;">取消回复</a></h3>
+        <form class="cl-comment-from" action="" method="post" id="postform">
+            {:token()}
+            <input type="hidden" name="post_id" id="post_id" value="{$post.id}"/>
+            <input type="hidden" name="pid" id="pid" value="0"/>
+            <p><input type="text" class="input" name="username" id="username" value="" size="22" tabindex="1"/>
+                <label for="username">
+                    <small>名称 (必须)</small>
+                </label>
+            </p>
+            <p><input type="text" class="input" name="email" id="email" value="" size="22" tabindex="2"/>
+                <label for="email">
+                    <small>邮件地址 (不会被公开) (必须)</small>
+                </label>
+            </p>
+            <p><input type="text" class="input" name="website" id="website" value="" size="22" tabindex="3"/>
+                <label for="website">
+                    <small>网站或博客</small>
+                </label>
+            </p>
+            <p><textarea name="content" class="form-control" id="commentcontent" cols="6" rows="5" tabindex="4"></textarea></p>
+            <p><input name="submit" type="submit" id="submit" tabindex="5" value="提交评论(Ctrl+回车)" class="btn btn-primary"/><span id="actiontips" style="margin-left:5px;"></span></p>
+            <p>
+                <input name="rememberme" type="checkbox" class="checkbox" tabindex="6" checked value="1"/> 记住我的信息，方便下次评论 <br/>
+                <input name="subscribe" type="checkbox" class="checkbox" tabindex="7" checked value="1"/> 有人回复时邮件通知我
+            </p>
+        </form>
+    </div>
+</div>
+
+<!--@formatter:off-->
+<script>
+    var post_id = {$post.id};
+    var postcomment_url = "{:addon_url('blog/comment/post')}";
+    var getcommentlist_url = "{:addon_url('blog/comment/index')}";
+</script>
+<!--@formatter:on-->
+<script data-render="script" src="__ADDON__/default/js/post.js"></script>

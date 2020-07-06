@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "page/index/index",
+    "page/post/index",
+    "page/post/detail",
+    "page/archive/index",
+    "page/aboutme/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#DE3639",
+    "navigationBarTitleText": "FastAdmin",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#aaaaaa",
+    "selectedColor": "#28ba9c",
+    "borderStyle": "black",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "page/index/index",
+        "iconPath": "assets/images/tabbar/index.png",
+        "selectedIconPath": "assets/images/tabbar/index-hl.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "page/post/index",
+        "iconPath": "assets/images/tabbar/store.png",
+        "selectedIconPath": "assets/images/tabbar/store-hl.png",
+        "text": "日志"
+      },
+      {
+        "pagePath": "page/archive/index",
+        "iconPath": "assets/images/tabbar/addon.png",
+        "selectedIconPath": "assets/images/tabbar/addon-hl.png",
+        "text": "归档"
+      },
+      {
+        "pagePath": "page/aboutme/index",
+        "iconPath": "assets/images/tabbar/my.png",
+        "selectedIconPath": "assets/images/tabbar/my-hl.png",
+        "text": "关于我"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

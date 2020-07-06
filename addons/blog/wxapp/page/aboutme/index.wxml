@@ -1,0 +1,18 @@
+<import src="/assets/libs/towxml/entry.wxml" />
+
+<view class="container">
+  <view class="header">
+    <view class="account">
+      <view class="zan-font-24" style="margin-top:20px;">
+        {{ my.name }}
+      </view>
+      <view class="zan-font-14">{{ my.enname }}</view>
+    </view>
+    <view class="avatar">
+      <image bindtap="uploadAvatar" src='{{ my.avatar }}'></image>
+    </view>
+  </view>
+  <view class="zan-panel zan-font-14 p15" style="margin-top:60px;">
+    {{ my.intro }}
+  </view>
+</view>

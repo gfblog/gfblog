@@ -1,0 +1,56 @@
+<import src="/assets/libs/zanui/tab/index.wxml" />
+<import src="/assets/libs/zanui/loadmore/index.wxml" />
+<view class="container">
+
+  <!-- S 焦点图 -->
+  <view class="swiper">
+    <swiper indicator-dots="true" interval="3000" duration="1000">
+      <block wx:for="{{ bannerList }}" wx:key="key">
+        <navigator url="../post/detail?id={{item.id}}">
+          <swiper-item>
+            <view class="swiper-item" style="background-image:url({{item.image}});"></view>
+            <text class="text">{{item.title}}</text>
+          </swiper-item>
+        </navigator>
+      </block>
+    </swiper>
+  </view>
+  <!-- E 焦点图 -->
+
+  <!-- S 首页列表 -->
+  <view class="post-list">
+      <block wx:for="{{ postList }}" wx:key="key">
+        <navigator url="../post/detail?id={{item.id}}">
+          <view class="zan-card">
+            <view class="zan-card__thumb">
+              <view class="image" style="background-image:url('{{item.image}}')"></view>
+            </view>
+            <view class="zan-card__detail">
+              <view class="zan-card__detail-row">
+                <view class="zan-card__left-col">
+                  {{ item.title }}
+                </view>
+              </view>
+
+              <view class="zan-card__detail-row zan-c-gray">
+                <view class="zan-card__right-col">
+                {{ item.create_date }}
+                </view>
+                <view class="zan-card__left-col author">
+                  {{ item.summary }}
+                </view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </block>
+  </view>
+  <!-- E 首页列表 -->
+
+  <!-- S 加载更多 -->
+  <template is="zan-loadmore" data="{{ loading: loading }}" />
+  <template is="zan-loadmore" data="{{ nodata: nodata }}" />
+  <template is="zan-loadmore" data="{{ nomore: nomore }}" />
+  <!-- E 加载更多 -->
+
+</view>

@@ -1,0 +1,26 @@
+{layout name="common/layout" /}
+<style>
+    #archive-list {
+        padding: 20px 40px 20px;
+        background: #fff;
+    }
+
+    #archive-list > h2 {
+        font-size: 34px;
+        margin-bottom: 15px;
+    }
+
+    #archive-list li {
+        margin-bottom: 15px;
+    }
+</style>
+<div id="archive-list">
+    {volist name="yearlist" id="postlist"}
+    <h2>{$key}</h2>
+    <ul class="list-unstyled">
+        {volist name="postlist" id="post"}
+        <li><a href="{$post.url}">{$post.title|htmlentities}</a></li>
+        {/volist}
+    </ul>
+    {/volist}
+</div>

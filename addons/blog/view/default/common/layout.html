@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <title>{:isset($title)?$title:'首页'} - {$site.name}</title>
+    <meta name="keywords" content="{:isset($keywords)?$keywords:''}"/>
+    <meta name="description" content="{:isset($description)?$description:''}"/>
+
+    <link rel="shortcut icon" href="__CDN__/assets/img/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" media="screen" href="__ADDON__/default/bootstrap/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" media="screen" href="__CDN__/assets/libs/bootstrap/dist/css/bootstrap.min.css"/>-->
+    <link rel="stylesheet" media="screen" href="__CDN__/assets/libs/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" media="screen" href="__ADDON__/default/css/common.css?v={$site.version}"/>
+    {__STYLE__}
+
+</head>
+<body>
+<div class="cl-header container-fluid">
+    <div class="header-content container px-0">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="{:addon_url('blog/index/index','',false)}">
+                <img src="{$config.logo|cdnurl}" height="72">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item {:request()->controller()=='index'?'active':''}">
+                        <a class="nav-link" href="{:addon_url('blog/index/index','',false)}">首页</a>
+                    </li>
+                    <li class="nav-item dropdown {:request()->controller()=='category'?'active':''}" id="category">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" data-target="#" href="javascript:">
+                            分类 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {foreach name="categorylist" id="cat"}
+                            <li class="{:isset($category)&&$category['id']==$cat['id']?'active':''}"><a href="{$cat.url}">{$cat.name}</a></li>
+                            {/foreach}
+                        </ul>
+                    </li>
+                    <li class="nav-item {:request()->controller()=='archive'?'active':''}">
+                        <a class="nav-link" href="{:addon_url('blog/archive/index')}">归档</a>
+                    </li>
+                    <li class="nav-item {:request()->controller()=='post'&&isset($post)&&$post['id']==1?'active':''}">
+                        <a class="nav-link" href="{:addon_url('blog/post/index', [':diyname'=>1, ':catename'=>'all', ':cateid'=>1])}">关于我</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 cl-left">
+            {__CONTENT__}
+        </div>
+        <div class="col-md-3 cl-right">
+            {include file="common/sidebar" /}
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid cl-footer">
+    <div class="container">
+        <p class="cl-copyright">{$config.copyright}</p>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="__CDN__/assets/libs/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="__ADDON__/default/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="__ADDON__/default/js/common.js?v={$site.version}"></script>
+
+{__SCRIPT__}
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+<view class="container">
+
+  <block wx:for="{{ archiveList }}" wx:for-item="group" wx:key="title">
+    <view class="zan-panel-title">{{ group.title }}</view>
+    <view class="zan-panel">
+      <navigator wx:for="{{ group.postList }}" wx:key="name" class="zan-cell zan-cell--access" url="../post/detail?id={{ item.id }}">
+        <view class="zan-cell__bd">{{ item.title }}</view>
+        <view class="zan-cell__ft"></view>
+      </navigator>
+    </view>
+  </block>
+  
+</view>
